@@ -7,7 +7,6 @@ export default new Vuex.Store({
   state: {
     valueTask: '',
     itemId: null,
-    
     itemSample: {
       itemId: null,
       title: null,
@@ -33,9 +32,11 @@ export default new Vuex.Store({
     SET_ITEM_VALUE(state, payload) {
       state.valueTask = payload.valueInputTask
     },
+
     CLEAR_ITEM_VALUE(state) {
       state.valueTask = ''
     },
+
     SET_ITEM_ID(state) {
       let id = Math.round(Math.random() * (1000000 - 0) + 0)
 
@@ -53,16 +54,17 @@ export default new Vuex.Store({
       task.completed = true
       task.active = false
     },
+
     SET_COMPLETED_ITEM_FALSE(state, payload) {
       const task = state.items.find(item => item.itemId === payload.itemId)
       task.completed = false
       task.active = true
     },
+
     SET_NEW_TASK(state, payload) {
       Object.assign(state.itemSample, { itemId: payload.itemId, title: state.valueTask } )
       state.items.push(Object.assign({}, state.itemSample))
     },
-    
     
     SET_ITEMS_FROM_LOCALSTORAGE(state, payload) {
       state.items.push(...payload.storage)
@@ -87,10 +89,6 @@ export default new Vuex.Store({
           type: 'CLEAR_ITEM_VALUE'
         })
       }
-      
-      
     }
   },
-  modules: {
-  }
 })
